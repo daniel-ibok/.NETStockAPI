@@ -1,0 +1,25 @@
+.vscode
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.cache
+*.sln.ide
+*.csproj.user
+*.csproj.DotSettings.user
+
+bin/
+obj/
+out/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+*.vs/
+*.tmp
+
+appsettings.*.json    # Ignore environment-specific config files (e.g., appsettings.Development.json)
+appsettings.local.json
+secrets.json
+Migrations/ 
