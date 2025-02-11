@@ -48,7 +48,7 @@ namespace API.Migrations
 
                     b.HasIndex("StockId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("API.Models.Stock", b =>
@@ -82,7 +82,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stock");
+                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("API.Models.Comment", b =>
