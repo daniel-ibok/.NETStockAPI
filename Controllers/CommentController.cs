@@ -30,7 +30,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var comment = await _commentRepository.GetByIdAsync(id);
-            return (comment is null) ? NotFound() : Ok(comment.ToCommentDto());
+            return (comment is null) ? NotFound("Comment does not exists") : Ok(comment.ToCommentDto());
         }
 
         [HttpPost]
@@ -50,7 +50,14 @@ namespace API.Controllers
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto commentDto)
         {
             var comment = await _commentRepository.UpdateAsync(id, commentDto.ToCommentFromUpdate());
-            return (comment is null) ? NotFound() : Ok(comment.ToCommentDto());
+            return (comment is null) ? NotFound("Comment does not exists") : Ok(comment.ToCommentDto());
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var comment = await _commentRepository.DeleteAsync(id);
+            return (comment is null) ? NotFound("Comment does not exists") : Ok(comment.ToCommentDto());
         }
     }
 }

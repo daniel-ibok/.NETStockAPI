@@ -30,7 +30,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var stock = await _stockRepository.GetByIdAsync(id);
-            return (stock is null) ? NotFound() : Ok(stock.ToStockDto());
+            return (stock is null) ? NotFound("Stock does not exists") : Ok(stock.ToStockDto());
         }
 
         [HttpPost]
@@ -45,7 +45,7 @@ namespace API.Controllers
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateDto)
         {
             var stock = await _stockRepository.UpdateAsync(id, updateDto);
-            return (stock is null) ? NotFound() : Ok(stock.ToStockDto());
+            return (stock is null) ? NotFound("Stock does not exists") : Ok(stock.ToStockDto());
         }
 
         [HttpDelete]
@@ -53,7 +53,7 @@ namespace API.Controllers
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var stock = await _stockRepository.DeleteAsync(id);
-            return (stock is null) ? NotFound() : NoContent();
+            return (stock is null) ? NotFound("Stock does not exists") : NoContent();
         }
     }
 }
