@@ -1,5 +1,6 @@
 
 using API.Data;
+using API.Dtos.Comment;
 using API.Interfaces;
 using API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,21 @@ namespace API.Repository
         public async Task<Comment> CreateAsync(Comment comment)
         {
             await _context.Comments.AddAsync(comment);
+            await _context.SaveChangesAsync();
+            return comment;
+        }
+
+        public async Task<Comment?> UpdateAsync(int id, Comment commentDto)
+        {
+            var comment = await _context.Comments.FindAsync(id);
+            if (comment is null)
+            {
+                return null;
+            }
+
+            comment.Title = commentDto.Title;
+            comment.Content = commentDto.Content;
+
             await _context.SaveChangesAsync();
             return comment;
         }
