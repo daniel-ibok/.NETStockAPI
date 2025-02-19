@@ -11,12 +11,10 @@ namespace API.Controllers
     [Route("api/stocks")]
     public class StockController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IStockRepository _stockRepository;
 
-        public StockController(ApplicationDbContext context, IStockRepository stockRepository)
+        public StockController(IStockRepository stockRepository)
         {
-            _context = context;
             _stockRepository = stockRepository;
         }
 
@@ -24,22 +22,22 @@ namespace API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var stocks = await _stockRepository.GetAllAsync();
-            var stockDto = stocks.Select(s => s.ToStockDTO());
-            return Ok(stocks);
+            var stockDto = stocks.Select(s => s.ToStockDto());
+            return Ok(stockDto);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var stock = await _stockRepository.GetByIdAsync(id);
-            return (stock is null) ? NotFound() : Ok(stock.ToStockDTO());
+            return (stock is null) ? NotFound() : Ok(stock.ToStockDto());
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
         {
-            var stock = await _stockRepository.CreateAsync(stockDto.ToStockFromCreateDTO());
-            return CreatedAtAction(nameof(GetById), new { id = stock.Id }, stock.ToStockDTO());
+            var stock = await _stockRepository.CreateAsync(stockDto.ToStockFromCreateDto());
+            return CreatedAtAction(nameof(GetById), new { id = stock.Id }, stock.ToStockDto());
         }
 
         [HttpPut]
@@ -47,7 +45,7 @@ namespace API.Controllers
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateDto)
         {
             var stock = await _stockRepository.UpdateAsync(id, updateDto);
-            return (stock is null) ? NotFound() : Ok(stock.ToStockDTO());
+            return (stock is null) ? NotFound() : Ok(stock.ToStockDto());
         }
 
         [HttpDelete]

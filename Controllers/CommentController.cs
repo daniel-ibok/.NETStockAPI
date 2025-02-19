@@ -1,0 +1,41 @@
+using API.Mappers;
+using API.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using API.Dtos.Comment;
+
+namespace API.Controllers
+{
+    [ApiController]
+    [Route("api/comments")]
+    public class CommentController : ControllerBase
+    {
+        private readonly ICommentRepository _commentRepository;
+
+        public CommentController(ICommentRepository commentRepository)
+        {
+            _commentRepository = commentRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var comments = await _commentRepository.GetAllAsync();
+            var commentDto = comments.Select(c => c.ToCommentDto());
+            return Ok(commentDto);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var comment = await _commentRepository.GetByIdAsync(id);
+            return (comment is null) ? NotFound() : Ok(comment.ToCommentDto());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateCommentRequestDto commentDto)
+        {
+            var comment = await _commentRepository.CreateAsync(commentDto.ToCommentFromCreateDto());
+            return CreatedAtAction(nameof(GetById), new { id = comment.Id }, comment.ToCommentDto());
+        }
+    }
+}

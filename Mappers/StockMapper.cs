@@ -5,7 +5,7 @@ namespace API.Mappers
 {
     public static class StockMapper
     {
-        public static StockDto ToStockDTO(this Stock stock)
+        public static StockDto ToStockDto(this Stock stock)
         {
             return new StockDto
             {
@@ -16,10 +16,11 @@ namespace API.Mappers
                 LastDividend = stock.LastDividend,
                 Industry = stock.Industry,
                 MarketCap = stock.MarketCap,
+                Comments = stock.Comments.Select(c => c.ToCommentDto()).ToList()
             };
         }
 
-        public static Stock ToStockFromCreateDTO(this CreateStockRequestDto stock)
+        public static Stock ToStockFromCreateDto(this CreateStockRequestDto stock)
         {
             return new Stock
             {

@@ -129,3 +129,15 @@
 /home/danny/Documents/projects/CApi/API/obj/Debug/net9.0/API.sourcelink.json
 /home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/MySqlConnector.dll
 /home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Pomelo.EntityFrameworkCore.MySql.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Caching.Abstractions.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Caching.Memory.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Newtonsoft.Json.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
