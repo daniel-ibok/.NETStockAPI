@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace API.Dtos.Account
 {
-    public class RegisterDto
+    public class LoginDto
     {
         [Required]
         public required string UserName { get; set; }
 
         [Required]
-        [EmailAddress]
-        public required string Email { get; set; }
-
-        [Required]
         public required string Password { get; set; }
+
     }
 }
