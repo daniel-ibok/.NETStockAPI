@@ -141,3 +141,4 @@
 /home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
 /home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Newtonsoft.Json.dll
 /home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
+/home/danny/Documents/projects/CApi/API/bin/Debug/net9.0/Scalar.AspNetCore.dll

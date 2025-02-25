@@ -16,7 +16,8 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.1",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.1",
           "Microsoft.Extensions.Identity.Core": "9.0.1",
-          "Pomelo.EntityFrameworkCore.MySql": "9.0.0-preview.2.efcore.9.0.0"
+          "Pomelo.EntityFrameworkCore.MySql": "8.0.2",
+          "Scalar.AspNetCore": "2.0.18"
         },
         "runtime": {
           "API.dll": {}
@@ -656,15 +657,14 @@
           }
         }
       },
-      "MySqlConnector/2.4.0": {
+      "MySqlConnector/2.3.5": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.2"
         },
         "runtime": {
-          "lib/net9.0/MySqlConnector.dll": {
+          "lib/net8.0/MySqlConnector.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.4.0.0"
+            "fileVersion": "2.3.5.0"
           }
         }
       },
@@ -687,15 +687,23 @@
           }
         }
       },
-      "Pomelo.EntityFrameworkCore.MySql/9.0.0-preview.2.efcore.9.0.0": {
+      "Pomelo.EntityFrameworkCore.MySql/8.0.2": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "9.0.1",
-          "MySqlConnector": "2.4.0"
+          "MySqlConnector": "2.3.5"
         },
         "runtime": {
           "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.0.0"
+            "assemblyVersion": "8.0.2.0",
+            "fileVersion": "8.0.2.0"
+          }
+        }
+      },
+      "Scalar.AspNetCore/2.0.18": {
+        "runtime": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "assemblyVersion": "2.0.18.0",
+            "fileVersion": "2.0.18.0"
           }
         }
       },
@@ -1105,12 +1113,12 @@
       "path": "mono.texttemplating/3.0.0",
       "hashPath": "mono.texttemplating.3.0.0.nupkg.sha512"
     },
-    "MySqlConnector/2.4.0": {
+    "MySqlConnector/2.3.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-78M+gVOjbdZEDIyXQqcA7EYlCGS3tpbUELHvn6638A2w0pkPI625ixnzsa5staAd3N9/xFmPJtkKDYwsXpFi/w==",
-      "path": "mysqlconnector/2.4.0",
-      "hashPath": "mysqlconnector.2.4.0.nupkg.sha512"
+      "sha512": "sha512-AmEfUPkFl+Ev6jJ8Dhns3CYHBfD12RHzGYWuLt6DfG6/af6YvOMyPz74ZPPjBYQGRJkumD2Z48Kqm8s5DJuhLA==",
+      "path": "mysqlconnector/2.3.5",
+      "hashPath": "mysqlconnector.2.3.5.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",
@@ -1126,12 +1134,19 @@
       "path": "newtonsoft.json.bson/1.0.2",
       "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
     },
-    "Pomelo.EntityFrameworkCore.MySql/9.0.0-preview.2.efcore.9.0.0": {
+    "Pomelo.EntityFrameworkCore.MySql/8.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Gf1L9hdJFW3zPw1CWqgkBLLxySAPzRKeWXFwm7YFxzgPQvM4ISkR8ZFGlVYWAxfd0oYxnXRulu+WVgt0jdHQ5Q==",
-      "path": "pomelo.entityframeworkcore.mysql/9.0.0-preview.2.efcore.9.0.0",
-      "hashPath": "pomelo.entityframeworkcore.mysql.9.0.0-preview.2.efcore.9.0.0.nupkg.sha512"
+      "sha512": "sha512-XjnlcxVBLnEMbyEc5cZzgZeDyLvAniACZQ04W1slWN0f4rmfNzl98gEMvHnFH0fMDF06z9MmgGi/Sr7hJ+BVnw==",
+      "path": "pomelo.entityframeworkcore.mysql/8.0.2",
+      "hashPath": "pomelo.entityframeworkcore.mysql.8.0.2.nupkg.sha512"
+    },
+    "Scalar.AspNetCore/2.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nS8Sw6wRO1A/dARn3q9R6znIBfddJcmAczI5uMROBGWkO2KG/ad/Ld+UeUePTxGr1+6humJSOxI7An+q4q3oGA==",
+      "path": "scalar.aspnetcore/2.0.18",
+      "hashPath": "scalar.aspnetcore.2.0.18.nupkg.sha512"
     },
     "System.CodeDom/6.0.0": {
       "type": "package",
