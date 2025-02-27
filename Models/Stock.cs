@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Models
 {
+    [Table("stocks")]
     public class Stock
     {
         public int Id { get; set; }
@@ -25,5 +22,6 @@ namespace API.Models
         public long MarketCap { get; set; }
 
         public List<Comment> Comments { get; set; } = new();
+        public List<Portfolio> Portfolios { get; set; } = new();
     }
 }
