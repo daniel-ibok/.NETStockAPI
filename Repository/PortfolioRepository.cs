@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.Interfaces;
-using API.Mappers;
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +34,16 @@ namespace API.Repository
                     Industry = stock.Stock.Industry,
                     MarketCap = stock.Stock.MarketCap
                 }).ToListAsync();
+        }
+
+        public async Task<Portfolio?> DeleteAsync(User user, string symbol)
+        {
+            var portfolio = await _context.Portfolios.FirstOrDefaultAsync(p => p.UserID == user.Id && string.Equals(p!.Stock!.Symbol.ToLower(), symbol.ToLower()));
+            if (portfolio is null) return null;
+
+            _context.Portfolios.Remove(portfolio);
+            await _context.SaveChangesAsync();
+            return portfolio;
         }
     }
 }

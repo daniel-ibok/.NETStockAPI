@@ -4,6 +4,7 @@ using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace API.Controllers
 {
@@ -22,7 +23,8 @@ namespace API.Controllers
             _portfolioRepository = portfolioRepository;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetUserPortfolio()
         {
             var username = User.GetUsername();
@@ -31,7 +33,8 @@ namespace API.Controllers
             return Ok(portfolios);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPortfolio(string symbol)
         {
             var username = User.GetUsername();
@@ -55,6 +58,23 @@ namespace API.Controllers
             }
 
             return Created();
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> DeletePortfolio(string symbol)
+        {
+            var username = User.GetUsername();
+            var user = await _userManager.FindByNameAsync(username);
+
+            var portfolio = await _portfolioRepository.GetUserPortfolio(user!);
+            var filteredStocks = portfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower());
+
+            if (!filteredStocks.Any())
+                return BadRequest("Stock not in portfolio");
+
+            await _portfolioRepository.DeleteAsync(user!, symbol);
+            return Ok();
         }
     }
 }
