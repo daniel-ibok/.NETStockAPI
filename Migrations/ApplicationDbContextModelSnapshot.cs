@@ -44,9 +44,14 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("UserID")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("StockId");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("comments");
                 });
@@ -192,13 +197,13 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5da63b13-0337-4715-8b77-bca6cecff904",
+                            Id = "7a379d64-0bb7-4678-a0a3-b742dda8c606",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "4f4c559e-e2e8-4dfd-b426-1b65e4e59ad3",
+                            Id = "f1285e36-66cd-4919-867f-1edc530b43f6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -316,7 +321,13 @@ namespace API.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
 
+                    b.HasOne("API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
                     b.Navigation("Stock");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("API.Models.Portfolio", b =>
