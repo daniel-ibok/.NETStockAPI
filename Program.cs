@@ -1,4 +1,5 @@
 using API.Data;
+using API.Extensions;
 using API.Interfaces;
 using API.Models;
 using API.Repository;
@@ -13,8 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(option =>
+{
+    option.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+});
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
@@ -49,9 +54,9 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
+        ValidateIssuer = false,
         ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ValidateAudience = true,
+        ValidateAudience = false,
         ValidAudience = builder.Configuration["JWT:Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
@@ -63,13 +68,25 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapScalarApiReference();
+    app.MapScalarApiReference(options =>
+    {
+        options.Title = "Stock API";
+        options.DarkMode = true;
+        options.Theme = ScalarTheme.Default;
+        options.HideModels = true;
+
+        options.Authentication = new ScalarAuthenticationOptions
+        {
+            PreferredSecurityScheme = "Bearer"
+        };
+    });
     app.MapOpenApi();
 }
 

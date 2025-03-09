@@ -14,6 +14,7 @@ namespace API.Controllers
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signinManager;
+        private readonly ITokenService _tokenService;
 
         public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager)
         {
@@ -73,8 +74,8 @@ namespace API.Controllers
 
             return Ok(new NewUserDto
             {
-                UserName = user.UserName,
-                Email = user.Email,
+                UserName = user.UserName!,
+                Email = user.Email!,
                 Token = _tokenService.CreateToken(user)
             });
         }
